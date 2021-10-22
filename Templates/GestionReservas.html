@@ -16,7 +16,9 @@
 
     <script>
         window.onload = function(){
-            // cargarInfoMessage();
+            cargarInfoReservas();
+            selectClientes();
+            selectBarcos();
         }
 
     </script>
@@ -50,15 +52,15 @@
                 </div>
 
                 <div class="col-lg-8 bordeDivRojo EfectoSombraTabla" style=" height: 200px; overflow: scroll;" align="center"> <!-- Columna 4 -->
-                    <table id="tblMensajes" class="table-hover" style="width:1000px">
+                    <table id="tblReservas" class="table-hover" style="width:1000px">
                         <thead>
                             <tr class="encabezadotabla">
                                 <th scope="col">Id:</th>
                                 <th scope="col">Fecha Reserva:</th>
                                 <th scope="col">Fecha Devolución:</th>
-                                <th scope="col">Estatus:</th>
                                 <th scope="col">Cliente:</th>
                                 <th scope="col">Barco:</th>
+                                <th scope="col">Estatus:</th>
                                 <th scope="col">Opciones:</th>
                             </tr>
                         </thead>
@@ -87,17 +89,17 @@
                     </div>
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
-                        <input id="id" class="form-control" type="number" placeholder="Digite Id Consecutivo">
+                        <input id="id" class="form-control" type="number" placeholder="Autonumerico" readonly>
                     </div>
                 </div>
 
                 <div class="col-lg-3 bordeDivRojo" align="center">
-                    <div class="txtNaranjaBold bordeDivRojo" style="width: 80%; height: 25px" align="left">
+                    <div class="txtNaranjaBold bordeDivRojo" style="width: 80%; height: 25px; display: none" align="left">
                         Estatus:
                     </div>
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
-                        <select id="status" class="form-select">
+                        <select id="status" class="form-select" style="display: none">
                             <option selected>Seleccione el Estatus</option>
                             <option value="1">Cancelado</option>
                             <option value="2">Creado</option>
@@ -160,11 +162,8 @@
                     </div>
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
-                        <select id="client" class="form-select">
-                            <option selected>Seleccione el Cliente</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select id="idClient" class="form-select">
+                            <option value=""> --Seleccione una opción-- </option>
                         </select>
                     </div>
                 </div>
@@ -176,10 +175,7 @@
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
                         <select id="boat" class="form-select">
-                            <option selected>Seleccione el Barco</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value=""> --Seleccione una opción-- </option>
                         </select>
                     </div>
                 </div>
@@ -200,23 +196,23 @@
 
                 <div class="col-lg-2 bordeDivRojo" align="center"> <!-- Columna 4 Vacia -->
                     <div>
-                        <a href="#" onclick="newMessage()" style="background-color: Transparent;
+                        <a href="#" onclick="newReserva()" style="background-color: Transparent;
                         background-repeat:no-repeat;border: none;overflow: hidden;">
                         <img src="/Imagenes/Agregar1.png" width="50" height="50"></a>
                     </div>
                     <div>
-                        <a href="#" onclick="newMessage()" style="font-weight:bold; color:#FFB233; font-size: 13px;">Nueva Reserva</a>
+                        <a href="#" onclick="newReserva()" style="font-weight:bold; color:#FFB233; font-size: 13px;">Nueva Reserva</a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 bordeDivRojo" align="center"> <!-- Columna 2 Vacia -->
                     <div>
-                        <a href="#" onclick="editMessage()" style="background-color: Transparent;
+                        <a href="#" onclick="" style="background-color: Transparent;
                         background-repeat:no-repeat;border: none;overflow: hidden;">
                         <img src="/Imagenes/Guardar.png" width="50" height="50"></a>
                     </div>
                     <div>
-                        <a href="#" onclick="editMessage()" style="font-weight:bold; color:#FFB233; font-size: 13px;">Actualizar</a>
+                        <a href="#" onclick="" style="font-weight:bold; color:#FFB233; font-size: 13px;">Actualizar</a>
                     </div>
                 </div>
 

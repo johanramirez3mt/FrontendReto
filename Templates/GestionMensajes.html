@@ -16,7 +16,9 @@
 
     <script>
         window.onload = function(){
-            // cargarInfoMessage();
+            cargarInfoMessage();
+            selectClientes();
+            selectBarcos();
         }
 
     </script>
@@ -85,7 +87,7 @@
                     </div>
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
-                        <input id="id" class="form-control" type="number" placeholder="Digite Id Consecutivo">
+                        <input id="id" class="form-control" type="number" placeholder="Autonumerico" readonly>
                     </div>
                 </div>
 
@@ -95,7 +97,7 @@
                     </div>
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
-                        <input id="messagetext" class="form-control" type="text" placeholder="Digite el Mensaje">
+                        <input id="messageText" class="form-control" type="text" placeholder="Digite el Mensaje">
                     </div>
                 </div>
 
@@ -119,11 +121,8 @@
                     </div>
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
-                        <select id="client" class="form-select">
-                            <option selected>Seleccione el Cliente</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select id="idClient" class="form-select">
+                            <option value=""> --Seleccione una opción-- </option>
                         </select>
                     </div>
                 </div>
@@ -135,10 +134,7 @@
 
                     <div class="bordeDivRojo" style="width: 80%;" align="center">
                         <select id="boat" class="form-select">
-                            <option selected>Seleccione el Barco</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value=""> --Seleccione una opción-- </option>
                         </select>
                     </div>
                 </div>

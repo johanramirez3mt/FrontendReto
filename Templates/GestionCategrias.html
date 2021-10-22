@@ -16,7 +16,7 @@
 
     <script>
         window.onload = function(){
-            // cargarInfoMessage();
+            cargarInfoCategoria();
         }
 
     </script>
@@ -50,12 +50,13 @@
                 </div>
 
                 <div class="col-lg-8 bordeDivRojo EfectoSombraTabla" style=" height: 200px; overflow: scroll;" align="center"> <!-- Columna 4 -->
-                    <table id="tbl-categorias" class="table-hover" style="width:1000px">
+                    <table id="tblCategorias" class="table-hover" style="width:800px">
                         <thead>
                             <tr class="encabezadotabla">
                                 <th scope="col">Id:</th>
-                                <th scope="col">Nomre de la Categoría:</th>
+                                <th scope="col">Nombre de la Categoría:</th>
                                 <th scope="col">Descripción:</th>
+                                <th scope="col">Opciones:</th>
                             </tr>
                         </thead>
                         <tbody id="resultado">
@@ -137,23 +138,23 @@
 
                 <div class="col-lg-2 bordeDivRojo" align="center"> <!-- Columna 4 Vacia -->
                     <div>
-                        <a href="#" onclick="newMessage()" style="background-color: Transparent;
+                        <a href="#" onclick="newCategoria()" style="background-color: Transparent;
                         background-repeat:no-repeat;border: none;overflow: hidden;">
                         <img src="/Imagenes/Agregar1.png" width="50" height="50"></a>
                     </div>
                     <div>
-                        <a href="#" onclick="newMessage()" style="font-weight:bold; color:#FFB233; font-size: 13px;">Nueva Categoría</a>
+                        <a href="#" onclick="newCategoria()" style="font-weight:bold; color:#FFB233; font-size: 13px;">Nueva Categoría</a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 bordeDivRojo" align="center"> <!-- Columna 2 Vacia -->
                     <div>
-                        <a href="#" onclick="editMessage()" style="background-color: Transparent;
+                        <a href="#" onclick="" style="background-color: Transparent;
                         background-repeat:no-repeat;border: none;overflow: hidden;">
                         <img src="/Imagenes/Guardar.png" width="50" height="50"></a>
                     </div>
                     <div>
-                        <a href="#" onclick="editMessage()" style="font-weight:bold; color:#FFB233; font-size: 13px;">Actualizar</a>
+                        <a href="#" onclick="" style="font-weight:bold; color:#FFB233; font-size: 13px;">Actualizar</a>
                     </div>
                 </div>
 
