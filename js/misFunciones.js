@@ -20,7 +20,7 @@ function cargarRespuestaCategoria(items){
         filaTabla += "<td>"+items[i].id+"</td>";
         filaTabla += "<td>"+items[i].name+"</td>";
         filaTabla += "<td>"+items[i].description+"</td>";
-        //filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick=''>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick=''>Eliminar</button> </td>";
+        filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick='passEditCategoria()'>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick='deleteCategoria("+items[i].id+")'>Eliminar</button> </td>";
         filaTabla +="</tr>";
     }
     tableBody.append(filaTabla);
@@ -46,6 +46,65 @@ function newCategoria(){
             $("#description").val("");
             cargarInfoCategoria();
             alert("Se Guardo Categoria Exitosamente")
+        }
+    });
+}
+
+function passEditCategoria(){
+    $("#tblCategorias").on('click','.btnSelect',function(){
+        // get the current row
+        var currentRow=$(this).closest("tr");
+        var col1=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+        var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+        var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+        // var data=col1+"\n"+col2+"\n"+col3+"\n"+col4+"\n"+col5;
+        // alert(data);
+        $('#id').val(col1);
+        $('#name').val(col2);
+        $('#description').val(col3);
+    });
+}
+
+function editCategoria(){
+    let data={
+        id:$("#id").val(),
+        name:$("#name").val(),
+        description:$("#description").val(),
+    };
+    let dataToSend=JSON.stringify(data);
+    $.ajax({
+        type:"PUT",
+        contentType: "application/json; charset=utf-8",
+        data:dataToSend,
+        contentType:"application/JSON",
+        datatype:"JSON",
+        url:"http://localhost:8080/api/Category/update",
+        success:function(respuesta){
+            $("#resultado").empty();
+            $("#id").val("");
+            $("#name").val("");
+            $("#description").val("");
+            cargarInfoCategoria();
+            alert("Se Actualizo Categoría Exitosamente")
+        }
+    });
+}
+
+function deleteCategoria(idElemento){
+    let data={
+        id:idElemento
+    };
+    let dataToSend=JSON.stringify(data);
+    $.ajax({
+        type:"DELETE",
+        contentType: "application/json; charset=utf-8",
+        data:dataToSend,
+        datatype:"JSON",
+        url:"http://localhost:8080/api/Category/"+idElemento,
+        success:function(respuesta){
+            $("#resultado").empty();
+            cargarInfoCategoria();
+            alert("Se Eliminado Categoría Exitosamente")
         }
     });
 }
@@ -94,7 +153,8 @@ function cargarRespuestaBarcos(items){
         filaTabla +="<td>"+items[i].category.name+"</td>";
         filaTabla +="<td>"+items[i].name+"</td>";
         filaTabla +="<td>"+items[i].description+"</td>";
-        //filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick=''>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick=''>Eliminar</button> </td>";
+        filaTabla +="<td style='display:none'>"+items[i].category.id+"</td>";
+        filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick='passEditBarco()'>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick='deleteBarco("+items[i].id+")'>Eliminar</button> </td>";
         filaTabla +="</tr>";
     }
     tableBody.append(filaTabla);
@@ -142,8 +202,9 @@ function passEditBarco(){
         var col1=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
         var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
         var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-        var col4=currentRow.find("td:eq(3)").text(); // get current row 4rd TD
+        var col4=currentRow.find("td:eq(6)").text(); // get current row 4rd TD
         var col5=currentRow.find("td:eq(4)").text(); // get current row 4rd TD
+        var col6=currentRow.find("td:eq(5)").text();
         // var data=col1+"\n"+col2+"\n"+col3+"\n"+col4+"\n"+col5;
         // alert(data);
         $('#id').val(col1);
@@ -151,35 +212,44 @@ function passEditBarco(){
         $('#model').val(col3);
         $('#category_id').val(col4);
         $('#name').val(col5);
+        $("#description").val(col6);
     });
 }
 
 function editBarco(){
-    let data={
-        id:$("#id").val(),
-        brand:$("#brand").val(),
-        model:$("#model").val(),
-        category_id:$("#category_id").val(),
-        name:$("#name").val()
-    };
-    let dataToSend=JSON.stringify(data);
-    $.ajax({
-        url:"https://gb6afec73d437f3-dbreto1alejod.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/boat/boat",
-        type:"PUT",
-        data:dataToSend,
-        contentType:"application/JSON",
-        datatype:"JSON",
-        success:function(respuesta){
-            $("#resultado").empty();
-            $("#id").val("");
-            $("#brand").val("");
-            $("#model").val("");
-            $("#category_id").val("");
-            $("#name").val("");
-            cargarInfoBarcos();
-            alert("Se Actualizo Barco Exitosamente")
-        }
-    });
+    if($("#category_id").val()){
+        let objCategory = {id:$("#category_id").val()};
+        let data={
+            id:$("#id").val(),
+            brand:$("#brand").val(),
+            year:$("#model").val(),
+            category:objCategory,
+            name:$("#name").val(),
+            description:$("#description").val()
+        };
+        let dataToSend=JSON.stringify(data);
+        $.ajax({
+            type:"PUT",
+            contentType: "application/json; charset=utf-8",
+            data:dataToSend,
+            contentType:"application/JSON",
+            datatype:"JSON",
+            url:"http://localhost:8080/api/Boat/update",
+            success:function(respuesta){
+                $("#resultado").empty();
+                $("#id").val("");
+                $("#brand").val("");
+                $("#model").val("");
+                $("#category_id").val("");
+                $("#name").val("");
+                $("#description").val("");
+                cargarInfoBarcos();
+                alert("Se Actualizo Barco Exitosamente")
+            }
+        });
+    }else {
+        alert("ojo, Debe seleccionar una categoria")
+}
 }
 
 function deleteBarco(idElemento){
@@ -188,11 +258,11 @@ function deleteBarco(idElemento){
     };
     let dataToSend=JSON.stringify(data);
     $.ajax({
-        url:"https://gb6afec73d437f3-dbreto1alejod.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/boat/boat",
         type:"DELETE",
+        contentType: "application/json; charset=utf-8",
         data:dataToSend,
-        contentType:"application/JSON",
         datatype:"JSON",
+        url:"http://localhost:8080/api/Boat/"+idElemento,
         success:function(respuesta){
             $("#resultado").empty();
             cargarInfoBarcos();
@@ -228,7 +298,7 @@ function cargarRespuestaClient(items){
         filaTabla += "<td>"+items[i].email+"</td>";
         filaTabla +="<td>"+items[i].age+"</td>";
         filaTabla +="<td>"+items[i].password+"</td>";
-        //filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick=''>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick=''>Eliminar</button> </td>";
+        filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick='passEditCliente()'>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick='deleteClient("+items[i].idClient+")'>Eliminar</button> </td>";
         filaTabla +="</tr>";
     }
     tableBody.append(filaTabla);
@@ -270,33 +340,37 @@ function passEditCliente(){
         var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
         var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
         var col4=currentRow.find("td:eq(3)").text(); // get current row 4rd TD
+        var col5=currentRow.find("td:eq(4)").text(); // get current row 4rd TD
         $('#id').val(col1);
         $('#name').val(col2);
         $('#email').val(col3);
         $('#age').val(col4);
+        $('#password').val(col5);
     });
 }
 
 function editClient(){
     let data={
-        id:$("#id").val(),
+        idClient:$("#id").val(),
         name:$("#name").val(),
         email:$("#email").val(),
-        age:$("#age").val()
+        age:$("#age").val(),
+        password:$("#password").val()
     };
     let dataToSend=JSON.stringify(data);
     $.ajax({
-        url:"https://gb6afec73d437f3-dbreto1alejod.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/client/client",
         type:"PUT",
+        contentType:"application/json; charset=utf-8",
         data:dataToSend,
-        contentType:"application/JSON",
         datatype:"JSON",
+        url:"http://localhost:8080/api/Client/update",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
             $("#name").val("");
             $("#email").val("");
             $("#age").val("");
+            $("#password").val("");
             cargarInfoClient();
             alert("Se Actualizo Cliente Exitosamente")
         }
@@ -309,11 +383,11 @@ function deleteClient(idElemento){
     };
     let dataToSend=JSON.stringify(data);
     $.ajax({
-        url:"https://gb6afec73d437f3-dbreto1alejod.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/client/client",
         type:"DELETE",
+        contentType: "application/json; charset=utf-8",
         data:dataToSend,
-        contentType:"application/JSON",
         datatype:"JSON",
+        url:"http://localhost:8080/api/Client/"+idElemento,
         success:function(respuesta){
             $("#resultado").empty();
             cargarInfoClient();
@@ -349,42 +423,12 @@ function cargarRespuestaMessage(items){
         filaTabla += "<td>"+items[i].messageText+"</td>";
         filaTabla += "<td>"+items[i].client.name+"</td>";
         filaTabla += "<td>"+items[i].boat.name+"</td>";
-        //filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick='passEditMensaje()'>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick='deleteMessage("+items[i].id+")'>Eliminar</button> </td>";
+        filaTabla += "<td style='display:none'>"+items[i].boat.id+"</td>";
+        filaTabla += "<td style='display:none'>"+items[i].client.idClient+"</td>";
+        filaTabla +="<td> <button class='btn btn-primary btn-sm btnSelect' onclick='passEditMensaje()'>Editar</button><button style='margin-left: 10px' class='btn btn-danger btn-sm' onclick='deleteMessage("+items[i].id+")'>Eliminar</button> </td>";
         filaTabla +="</tr>";
     }
     tableBody.append(filaTabla);
-}
-
-function selectClientes(){
-    $.ajax({
-        url:"http://localhost:8080/api/Client/all",
-        type:"GET",
-        datatype:"JSON",
-        success:function(respuesta){
-            respuesta.forEach(function(item){
-                var option = document.createElement('option');
-                option.value = item.idClient;
-                option.innerHTML = item.name;
-                idClient.appendChild(option)
-                })
-        }
-    });
-}
-
-function selectBarcos(){
-    $.ajax({
-        url:"http://localhost:8080/api/Boat/all",
-        type:"GET",
-        datatype:"JSON",
-        success:function(respuesta){
-            respuesta.forEach(function(item){
-                var option = document.createElement('option');
-                option.value = item.id;
-                option.innerHTML = item.name;
-                boat.appendChild(option)
-                })
-        }
-    });
 }
 
 function newMessage(){
@@ -440,15 +484,17 @@ function editMessage(){
     };
     let dataToSend=JSON.stringify(data);
     $.ajax({
-        url:"https://gb6afec73d437f3-dbreto1alejod.adb.us-sanjose-1.oraclecloudapps.com/ords/admin/message/message",
         type:"PUT",
         data:dataToSend,
-        contentType:"application/JSON",
+        ontentType:"application/json; charset=utf-8",
         datatype:"JSON",
+        url:"http://localhost:8080/api/Message/update",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
             $("#messagetext").val("");
+            $("#idClient").val("");
+            $("#boat").val("");
             cargarInfoMessage();
             alert("Se Actualizo Mensaje con Exito")
         }
@@ -473,6 +519,39 @@ function deleteMessage(idElemento){
         }
     });
 }
+
+function selectBarcos(){
+    $.ajax({
+        url:"http://localhost:8080/api/Boat/all",
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            respuesta.forEach(function(item){
+                var option = document.createElement('option');
+                option.value = item.id;
+                option.innerHTML = item.name;
+                boat.appendChild(option)
+                })
+        }
+    });
+}
+
+function selectClientes(){
+    $.ajax({
+        url:"http://localhost:8080/api/Client/all",
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            respuesta.forEach(function(item){
+                var option = document.createElement('option');
+                option.value = item.idClient;
+                option.innerHTML = item.name;
+                idClient.appendChild(option)
+                })
+        }
+    });
+}
+
 
 /* ------------------------------------------------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------------------------------------------------- */
