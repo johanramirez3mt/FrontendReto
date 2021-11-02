@@ -3,7 +3,7 @@ function cargarInfoCategoria(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://150.230.41.201:80/api/Category/all",
         success:function(respuesta){
             console.log(respuesta);
             cargarRespuestaCategoria(respuesta);
@@ -38,7 +38,7 @@ function newCategoria(){
         contentType: "application/json; charset=utf-8",
         data:dataToSend,
         datatype:"JSON",
-        url:"http://localhost:8080/api/Category/save",
+        url:"http://150.230.41.201:80/api/Category/save",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
@@ -78,7 +78,7 @@ function editCategoria(){
         data:dataToSend,
         contentType:"application/JSON",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Category/update",
+        url:"http://150.230.41.201:80/api/Category/update",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
@@ -100,7 +100,7 @@ function deleteCategoria(idElemento){
         contentType: "application/json; charset=utf-8",
         data:dataToSend,
         datatype:"JSON",
-        url:"http://localhost:8080/api/Category/"+idElemento,
+        url:"http://150.230.41.201:80/api/Category/"+idElemento,
         success:function(respuesta){
             $("#resultado").empty();
             cargarInfoCategoria();
@@ -117,7 +117,7 @@ function cargarInfoBarcos(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Boat/all",
+        url:"http://150.230.41.201:80/api/Boat/all",
         success:function(respuesta){
             console.log(respuesta);
             cargarRespuestaBarcos(respuesta);
@@ -127,7 +127,7 @@ function cargarInfoBarcos(){
 
 function selectCategoria(){
     $.ajax({
-        url:"http://localhost:8080/api/Category/all",
+        url:"http://150.230.41.201:80/api/Category/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -177,7 +177,7 @@ function newBarco(){
             contentType: "application/json; charset=utf-8",
             data:dataToSend,
             datatype:"JSON",
-            url:"http://localhost:8080/api/Boat/save",
+            url:"http://150.230.41.201:80/api/Boat/save",
             success:function(respuesta){
                 $("#resultado").empty();
                 $("#id").val("");
@@ -234,7 +234,7 @@ function editBarco(){
             data:dataToSend,
             contentType:"application/JSON",
             datatype:"JSON",
-            url:"http://localhost:8080/api/Boat/update",
+            url:"http://150.230.41.201:80/api/Boat/update",
             success:function(respuesta){
                 $("#resultado").empty();
                 $("#id").val("");
@@ -262,7 +262,7 @@ function deleteBarco(idElemento){
         contentType: "application/json; charset=utf-8",
         data:dataToSend,
         datatype:"JSON",
-        url:"http://localhost:8080/api/Boat/"+idElemento,
+        url:"http://150.230.41.201:80/api/Boat/"+idElemento,
         success:function(respuesta){
             $("#resultado").empty();
             cargarInfoBarcos();
@@ -278,7 +278,7 @@ function cargarInfoClient(){
     $.ajax({
         type:"GET",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Client/all",
+        url:"http://150.230.41.201:80/api/Client/all",
         success:function(respuesta){
             console.log(respuesta);
             cargarRespuestaClient(respuesta);
@@ -318,7 +318,7 @@ function newClient(){
         contentType: "application/json; charset=utf-8",
         data:dataToSend,
         datatype:"JSON",
-        url:"http://localhost:8080/api/Client/save",
+        url:"http://150.230.41.201:80/api/Client/save",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
@@ -363,7 +363,7 @@ function editClient(){
         contentType:"application/json; charset=utf-8",
         data:dataToSend,
         datatype:"JSON",
-        url:"http://localhost:8080/api/Client/update",
+        url:"http://150.230.41.201:80/api/Client/update",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
@@ -387,7 +387,7 @@ function deleteClient(idElemento){
         contentType: "application/json; charset=utf-8",
         data:dataToSend,
         datatype:"JSON",
-        url:"http://localhost:8080/api/Client/"+idElemento,
+        url:"http://150.230.41.201:80/api/Client/"+idElemento,
         success:function(respuesta){
             $("#resultado").empty();
             cargarInfoClient();
@@ -404,7 +404,7 @@ function cargarInfoMessage(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Message/all",
+        url:"http://150.230.41.201:80/api/Message/all",
         success:function(respuesta){
             console.log(respuesta);
             cargarRespuestaMessage(respuesta);
@@ -447,7 +447,7 @@ function newMessage(){
                 contentType: "application/json; charset=utf-8",
                 data:dataToSend,
                 datatype:"JSON",
-                url:"http://localhost:8080/api/Message/save",
+                url:"http://150.230.41.201:80/api/Message/save",
                 success:function(respuesta){
                     $("#resultado").empty();
                     $("#id").val("");
@@ -488,7 +488,7 @@ function editMessage(){
         data:dataToSend,
         ontentType:"application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Message/update",
+        url:"http://150.230.41.201:80/api/Message/update",
         success:function(respuesta){
             $("#resultado").empty();
             $("#id").val("");
@@ -522,7 +522,7 @@ function deleteMessage(idElemento){
 
 function selectBarcos(){
     $.ajax({
-        url:"http://localhost:8080/api/Boat/all",
+        url:"http://150.230.41.201:80/api/Boat/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -538,7 +538,7 @@ function selectBarcos(){
 
 function selectClientes(){
     $.ajax({
-        url:"http://localhost:8080/api/Client/all",
+        url:"http://150.230.41.201:80/api/Client/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -561,7 +561,7 @@ function cargarInfoReservas(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Reservation/all",
+        url:"http://150.230.41.201:80/api/Reservation/all",
         success:function(respuesta){
             console.log(respuesta);
             cargarRespuestaReservas(respuesta);
@@ -605,7 +605,7 @@ function newReserva(){
                 contentType: "application/json; charset=utf-8",
                 data:dataToSend,
                 datatype:"JSON",
-                url:"http://localhost:8080/api/Reservation/save",
+                url:"http://150.230.41.201:80/api/Reservation/save",
                 success:function(respuesta){
                     $("#resultado").empty();
                     $("#id").val("");
@@ -623,4 +623,98 @@ function newReserva(){
     }else {
         alert("ojo, Debe seleccionar un cliente")
     }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------- */
+
+function ReporteFecha(){
+    $.ajax({
+        type:"GET",
+        contentType: "application/json; charset=utf-8",
+        datatype:"JSON",
+        url:"http://localhost:8080/api/Reservation/report-dates/"+$("#startDate").val()+"/"+$("#devolutionDate").val(),
+        success:function(respuesta){
+            console.log(respuesta);
+            $("tbody").children().remove()
+            $("thead").children().remove()
+            var tableEncabezado = $('#tblInformes thead');
+            var encabezado = "";
+            encabezado += "<tr class='encabezadotabla'>";
+            encabezado += "<th scope='col'>Fecha Reserva:</th>";
+            encabezado += "<th scope='col'>Fecha Devolución:</th>";
+            encabezado += "<th scope='col'>Cliente:</th>";
+            encabezado += "<th scope='col'>Barco:</th>";
+            var tableBody = $('#tblInformes tbody');
+            var filaTabla = "";
+            for (var i=0; i<respuesta.length; i++) {
+                filaTabla += "<tr>";
+                filaTabla += "<td>"+respuesta[i].startDate+"</td>";
+                filaTabla += "<td>"+respuesta[i].devolutionDate+"</td>";
+                filaTabla += "<td>"+respuesta[i].client.name+"</td>";
+                filaTabla += "<td>"+respuesta[i].boat.name+"</td>";
+                filaTabla +="</tr>";
+            }
+            tableEncabezado.append(encabezado);
+            tableBody.append(filaTabla);
+        }
+    });
+}
+
+function ReporteCancelComplete(){
+    $.ajax({
+        type:"GET",
+        contentType: "application/json; charset=utf-8",
+        datatype:"JSON",
+        url:"http://localhost:8080/api/Reservation/report-status",
+        success:function(respuesta){
+            console.log(respuesta);
+            $("tbody").children().remove()
+            $("thead").children().remove()
+            var tableEncabezado = $('#tblInformes thead');
+            var encabezado = "";
+            encabezado += "<tr class='encabezadotabla'>";
+            encabezado += "<th scope='col'>Completadas:</th>";
+            encabezado += "<th scope='col'>Canceladas:</th>";
+            var tableBody = $('#tblInformes tbody');
+            var filaTabla = "";
+            //for (var i=0; i<respuesta.length; i++) {
+                filaTabla += "<tr>";
+                filaTabla += "<td>"+respuesta.completed+"</td>";
+                filaTabla += "<td>"+respuesta.cancelled+"</td>";
+                filaTabla +="</tr>";
+            //}
+            tableEncabezado.append(encabezado);
+            tableBody.append(filaTabla);
+        }
+    });
+}
+
+function ReporteTopClientes(){
+    $.ajax({
+        type:"GET",
+        contentType: "application/json; charset=utf-8",
+        datatype:"JSON",
+        url:"http://localhost:8080/api/Reservation/report-clients",
+        success:function(respuesta){
+            console.log(respuesta);
+            $("tbody").children().remove()
+            $("thead").children().remove()
+            var tableEncabezado = $('#tblInformes thead');
+            var encabezado = "";
+            encabezado += "<tr class='encabezadotabla'>";
+            encabezado += "<th scope='col'>Nombre Cliete:</th>";
+            encabezado += "<th scope='col'>Total:</th>";
+            var tableBody = $('#tblInformes tbody');
+            var filaTabla = "";
+            for (var i=0; i<respuesta.length; i++) {
+                filaTabla += "<tr>";
+                filaTabla += "<td>"+respuesta[i].client.name+"</td>";
+                filaTabla += "<td>"+respuesta[i].total+"</td>";
+                filaTabla +="</tr>";
+            }
+            tableEncabezado.append(encabezado);
+            tableBody.append(filaTabla);
+        }
+    });
 }
