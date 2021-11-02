@@ -633,7 +633,7 @@ function ReporteFecha(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Reservation/report-dates/"+$("#startDate").val()+"/"+$("#devolutionDate").val(),
+        url:"http://150.230.41.201:80/api/Reservation/report-dates/"+$("#startDate").val()+"/"+$("#devolutionDate").val(),
         success:function(respuesta){
             console.log(respuesta);
             $("tbody").children().remove()
@@ -666,7 +666,7 @@ function ReporteCancelComplete(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Reservation/report-status",
+        url:"http://150.230.41.201:80/api/Reservation/report-status",
         success:function(respuesta){
             console.log(respuesta);
             $("tbody").children().remove()
@@ -695,7 +695,7 @@ function ReporteTopClientes(){
         type:"GET",
         contentType: "application/json; charset=utf-8",
         datatype:"JSON",
-        url:"http://localhost:8080/api/Reservation/report-clients",
+        url:"http://150.230.41.201:80/api/Reservation/report-clients",
         success:function(respuesta){
             console.log(respuesta);
             $("tbody").children().remove()
