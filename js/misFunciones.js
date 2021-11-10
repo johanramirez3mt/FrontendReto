@@ -192,7 +192,7 @@ function newBarco(){
         });
     }else {
         alert("ojo, Debe seleccionar una categoria")
-}
+    }
 }
 
 function passEditBarco(){
@@ -249,7 +249,7 @@ function editBarco(){
         });
     }else {
         alert("ojo, Debe seleccionar una categoria")
-}
+    }
 }
 
 function deleteBarco(idElemento){
@@ -598,6 +598,7 @@ function newReserva(){
                 devolutionDate:$("#devolutionDate").val(),
                 client:objCliente,
                 boat:objBarco,
+                status:$("#status").val(),
             };
             let dataToSend=JSON.stringify(data);
             $.ajax({
@@ -613,7 +614,8 @@ function newReserva(){
                     $("#devolutionDate").val("");
                     $("#idClient").val("");
                     $("#boat").val("");
-                    cargarInfoMessage();
+                    $("#status").val("");
+                    cargarInfoReservas();
                     alert("Se Agrego Nueva Reserva Exitosamente")
                 }
             });
